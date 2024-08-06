@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: <your-ecr-repository-uri>:latest
+    ports:
+      - "80:80"
+

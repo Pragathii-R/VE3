@@ -1,0 +1,19 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # ... (previous steps)
+      - name: Run integration tests
+        run: |
+          # Add your integration test commands here
+          if ! curl -s http://your-ecs-service-endpoint | grep -q "Welcome to My Impressive Web App"; then
+            echo "Integration tests failed!"
+            exit 1
+          fi
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          # Add your rollback commands here
+          ecs-cli compose --file ecs-compose.yml service scale 0 --cluster-config $CLUSTER_NAME
+          ecs-cli compose --file ecs-compose.yml service up --cluster-config $CLUSTER_NAME
+
