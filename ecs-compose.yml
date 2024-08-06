@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: <your-ecr-repository-uri>:latest
+    image: <975050333781.dkr.ecr.us-east-1.amazonaws.com/ve3_webapp>:latest
     ports:
       - "80:80"
 
